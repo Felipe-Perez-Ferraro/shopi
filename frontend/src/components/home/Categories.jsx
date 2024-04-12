@@ -1,10 +1,8 @@
 import React from 'react';
-import { products } from '../../mock/products.json';
+import { useProducts } from '../../hooks/useProducts';
 
 const Categories = () => {
-  const uniqueCategories = Array.from(
-    new Set(products.map((prod) => prod.category))
-  );
+  const { uniqueCategories } = useProducts();
 
   return (
     <section className="mt-32">
@@ -14,7 +12,7 @@ const Categories = () => {
           {uniqueCategories.map((category, indx) => (
             <div
               key={category}
-              id={`category_${indx}`} 
+              id={`category_${indx}`}
               className="flex items-center justify-center rounded-xl h-[140px] transition ease shadow-md hover:scale-105 cursor-pointer"
             >
               <h3 className="text-2xl font-bold">{category}</h3>
