@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { star, see, shopping } from '../../utils/icons';
 
 const FeaturedProducts = (prod) => {
@@ -14,12 +15,18 @@ const FeaturedProducts = (prod) => {
         <p>{prod.rating.rate}</p>
       </div>
       <div className="flex justify-center gap-3 w-full">
-        <a className="bg-third py-1 px-3 w-24 text-center text-primary rounded-md text-xl cursor-pointer hover:bg-fourth">
+        <Link
+          to={`/shopping/product/${prod._id}`}
+          className="bg-third py-1 px-3 md:w-24 text-center text-primary rounded-md text-xl cursor-pointer hover:bg-fourth"
+        >
           {see}
-        </a>
-        <a className="bg-green py-1 px-3 w-24 text-center text-primary rounded-md text-xl cursor-pointer hover:bg-darkRed">
+        </Link>
+        <button
+          type="button"
+          className="bg-green py-1 px-3 md:w-24 text-center text-primary rounded-md text-xl cursor-pointer hover:bg-darkRed"
+        >
           {shopping}
-        </a>
+        </button>
       </div>
     </article>
   );
