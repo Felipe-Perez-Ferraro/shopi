@@ -4,6 +4,7 @@ import NavigationLinks from './NavigationLinks';
 import Footer from '../home/Footer';
 import ProductInterest from './ProductInterest';
 import HandleCart from './HandleCart';
+import Loading from '../slider/Loading';
 
 const Product = () => {
   const { id } = useParams();
@@ -12,8 +13,9 @@ const Product = () => {
   return (
     <section id="productSection" className="h-calc">
       <NavigationLinks />
+      {!product && <Loading />}
       {product ? (
-        <article className="flex flex-col gap-2 max-w-xs mx-auto md:max-w-2xl lg:max-w-4xl xl:max-w-7xl pt-5">
+        <article className="flex flex-col gap-2 max-w-xs mx-auto md:max-w-2xl lg:max-w-4xl xl:max-w-7xl py-5">
           <h2 className="font-bold lg:text-lg">{product.title}</h2>
           <div className="flex flex-col gap-2 lg:flex-row lg:gap-10">
             <figure className="flex justify-center lg:w-1/2">
@@ -40,7 +42,7 @@ const Product = () => {
       ) : (
         <p>Producto no encontrado</p>
       )}
-      <Footer />
+      {product && <Footer />}
     </section>
   );
 };
