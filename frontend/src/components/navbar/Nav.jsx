@@ -28,7 +28,7 @@ export const Nav = () => {
             {xMark}
           </button>
         </li>
-        <li className="mt-8 w-full border-b border-black md:mt-0 md:border-0 md:w-auto md:text-second">
+        <li className="mt-8 w-full border-b border-black md:mt-0 md:border-0 md:w-auto md:text-second pl-1">
           <NavLink
             className="text-xl font-medium hover:text-yellow transition ease"
             to="/"
@@ -57,7 +57,7 @@ export const Nav = () => {
       </div>
       {toggleMenu && (
         <div
-          className="fixed top-0 left-0 w-screen h-screen bg-totalBlack opacity-50 z-10 md:bg-transparent"
+          className="fixed top-0 left-0 w-screen h-screen bg-totalBlack opacity-50 z-10 md:bg-transparent lg:w-0 lg:h-0"
           onClick={handleToggleMenu}
         ></div>
       )}
