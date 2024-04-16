@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const Products = ({ columns, product }) => {
   return (
-    <div key={product._id} className="border border-black p-1 bg-second">
+    <div className="border border-black p-1 bg-second">
       <figure className={`w-full ${columns ? 'h-60' : 'h-36'}`}>
         <img
           src={product.image}
@@ -11,7 +11,7 @@ const Products = ({ columns, product }) => {
           className="h-full w-full"
         />
       </figure>
-      <div className="min-h-40 flex flex-col justify-between">
+      <div className="min-h-52 flex flex-col justify-between">
         <h4 className="text-sm text-start pt-2">{product.title}</h4>
         <div className="flex flex-col gap-2">
           <div className="flex justify-between items-center">
