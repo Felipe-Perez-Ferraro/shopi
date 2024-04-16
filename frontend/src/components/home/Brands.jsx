@@ -6,9 +6,11 @@ import vansLogo from '../../assets/vans.png';
 
 const Brands = () => {
   return (
-    <section className="mt-32">
+    <section className="my-32">
       <article className="flex flex-col gap-4 max-w-xs mx-auto md:max-w-2xl lg:max-w-4xl xl:max-w-7xl">
-        <h2 className="font-bold text-3xl text-center mb-4 md:text-3xl">Trusted Partners</h2>
+        <h2 className="font-bold text-3xl text-center mb-4 md:text-3xl">
+          Trusted Partners
+        </h2>
         <div className="flex flex-col gap-6 items-center md:grid md:grid-cols-2 lg:flex lg:flex-row">
           <figure className="w-[300px] h-auto">
             <img

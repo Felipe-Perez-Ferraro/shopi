@@ -4,6 +4,7 @@ import Layout from '../pages/Layout';
 import Home from '../pages/Home';
 import Shopping from '../pages/Shopping';
 import Product from '../components/shopping/Product';
+import Categories from '../components/shopping/Categories';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,14 @@ const router = createBrowserRouter([
     element: (
       <Layout>
         <Product />
+      </Layout>
+    ),
+  },
+  {
+    path: '/:category',
+    element: (
+      <Layout>
+        <Categories />
       </Layout>
     ),
   },

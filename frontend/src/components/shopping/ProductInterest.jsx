@@ -7,6 +7,9 @@ import { useProducts } from '../../hooks/useProducts';
 const ProductInterest = ({ id, product }) => {
   const { settings } = useSlider();
   const { products } = useProducts(id);
+  const handleScrollTop = () => {
+    window.scrollTo(0, 0);
+  };
 
   const interestCategories = products?.filter(
     (prod) =>
@@ -36,6 +39,7 @@ const ProductInterest = ({ id, product }) => {
                 <Link
                   to={`/shopping/product/${prod._id}`}
                   className="bg-third py-1 px-3 md:w-24 text-center text-primary rounded-md text-xl cursor-pointer hover:bg-fourth"
+                  onClick={handleScrollTop}
                 >
                   {see}
                 </Link>

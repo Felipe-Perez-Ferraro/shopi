@@ -1,10 +1,8 @@
-import React from 'react'
-import Front from '../components/shopping/Front'
+import React from 'react';
+import Front from '../components/shopping/Front';
 
 const Shopping = () => {
-  return (
-    <Front />
-  )
-}
+  return <Front />;
+};
 
-export default Shopping
+export default Shopping;

@@ -8,7 +8,10 @@ const NavigationLinks = () => {
       <Link to="/" className="text-xs hover:underline hover:underline-offset-2">
         Home {chevronRight}
       </Link>
-      <Link to="/shopping" className="text-xs hover:underline hover:underline-offset-2">
+      <Link
+        to="/shopping"
+        className="text-xs hover:underline hover:underline-offset-2"
+      >
         Shopping {chevronRight}
       </Link>
       <p className="text-sm text-blue">Product</p>
