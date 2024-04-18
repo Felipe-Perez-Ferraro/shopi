@@ -1,22 +1,22 @@
 import React from 'react';
 import { useCart } from '../../hooks/useCart';
-import Swal from 'sweetalert2'
+import Swal from 'sweetalert2';
 
-const CartFeatures = ({handleToggleCart}) => {
+const CartFeatures = ({ handleToggleCart }) => {
   const { cart, totalCart, clearCart } = useCart();
 
   const handleBuyItem = () => {
     Swal.fire({
-      title: "Payment Successfull",
-      text: "Thanks for buying at shopi",
-      color: "#fff",
-      icon: "success",
+      title: 'Payment Successfull',
+      text: 'Thanks for buying at shopi',
+      color: '#fff',
+      icon: 'success',
       showConfirmButton: false,
-      background: "green"
-    })
-    clearCart()
-    handleToggleCart()
-  }
+      background: 'green',
+    });
+    clearCart();
+    handleToggleCart();
+  };
 
   return (
     <div className="flex flex-col p-1 gap-3">

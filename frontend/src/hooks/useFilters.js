@@ -36,7 +36,7 @@ export function useFilters() {
       minPrice: 0,
       sortPrice: '',
     });
-  }
+  };
 
   const maxPrice = Array.from(new Set(products?.map((prod) => prod.price)));
 
