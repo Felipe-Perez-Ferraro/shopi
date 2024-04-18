@@ -14,7 +14,7 @@ const Product = () => {
     <section id="productSection" className="h-calc">
       <NavigationLinks />
       {!product && <Loading />}
-      {product ? (
+      {product && (
         <article className="flex flex-col gap-2 max-w-xs mx-auto md:max-w-2xl lg:max-w-4xl xl:max-w-7xl py-5">
           <h2 className="font-bold lg:text-lg">{product.title}</h2>
           <div className="flex flex-col gap-2 lg:flex-row lg:gap-10">
@@ -34,13 +34,11 @@ const Product = () => {
                 </div>
                 <p className="font-semibold">Quantity: {product.quantity}</p>
               </div>
-              <HandleCart />
+              <HandleCart product={product} />
             </div>
           </div>
           <ProductInterest id={id} product={product} />
         </article>
-      ) : (
-        <p>Producto no encontrado</p>
       )}
       {product && <Footer />}
     </section>

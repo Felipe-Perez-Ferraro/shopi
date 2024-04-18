@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
-import { xMark, trash } from '../../utils/icons';
+import { xMark } from '../../utils/icons';
 import { useCart } from '../../hooks/useCart';
+import CartItems from './CartItems';
+import CartFeatures from './CartFeatures';
 
 const Cart = ({ toggleCart, handleToggleCart }) => {
-  const { cart, totalCart, deleteItem, clearCart, addQty, subQty } = useCart();
+  const { cart } = useCart();
 
   useEffect(() => {
     const handleScroll = (e) => {
@@ -45,79 +47,11 @@ const Cart = ({ toggleCart, handleToggleCart }) => {
           {cart &&
             cart.map((product) => (
               <li key={product._id} className="border-b">
-                <div className="p-1 flex flex-col gap-4">
-                  <div className="flex gap-1">
-                    <figure className="max-w-36 max-h-36">
-                      <img
-                        src={product.image}
-                        alt={product.title}
-                        className="w-full h-full"
-                      />
-                    </figure>
-                    <h3 className="text-sm font-semibold lg:text-base">
-                      {product.title}
-                    </h3>
-                  </div>
-                  <div className="flex justify-center gap-10 items-center">
-                    <div className="flex justify-center gap-2 items-center">
-                      <button
-                        className="bg-second px-2 py-1 border border-black font-medium hover:bg-darkGray"
-                        type="button"
-                        onClick={() => addQty(product)}
-                        disabled={product.cartQuantity === product.quantity}
-                      >
-                        +
-                      </button>
-                      <span>{product.cartQuantity}</span>
-                      <button
-                        className="bg-second px-2 py-1 border border-black font-medium hover:bg-darkGray"
-                        type="button"
-                        onClick={() => subQty(product)}
-                        disabled={product.cartQuantity === 1}
-                      >
-                        -
-                      </button>
-                    </div>
-                    <div>
-                      <p>${product.price * product.cartQuantity}</p>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={() => deleteItem(product._id)}
-                      className="text-darkRed"
-                    >
-                      {trash}
-                    </button>
-                  </div>
-                </div>
+                <CartItems product={product} />
               </li>
             ))}
         </div>
-        <div className="flex flex-col p-1 gap-3">
-          <div>
-            <h3 className="font-bold text-black text-lg">
-              Items: {cart.length}
-            </h3>
-            <h3 className="font-bold text-black text-xl">
-              Total: ${totalCart}
-            </h3>
-          </div>
-          <div className="flex gap-4 justify-center items-center">
-            <button
-              className="border w-24 py-2 font-semibold hover:bg-green hover:text-primary"
-              type="button"
-            >
-              Buy
-            </button>
-            <button
-              className="border w-24 py-2 font-semibold hover:bg-darkRed hover:text-primary"
-              type="button"
-              onClick={clearCart}
-            >
-              Clear Cart
-            </button>
-          </div>
-        </div>
+        <CartFeatures handleToggleCart={handleToggleCart} />
       </ul>
     </>
   );

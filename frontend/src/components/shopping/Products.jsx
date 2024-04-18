@@ -1,7 +1,11 @@
-import { see, shopping } from '../../utils/icons';
+import { useCart } from '../../hooks/useCart';
+import { see, shopping, trashCan } from '../../utils/icons';
 import { Link } from 'react-router-dom';
 
 const Products = ({ columns, product }) => {
+  const { cart, addToCart, deleteItem } = useCart();
+  const isProduct = cart.some((item) => item._id === product._id);
+
   return (
     <div className="border border-black p-1 bg-second">
       <figure className={`w-full ${columns ? 'h-60' : 'h-36'}`}>
@@ -9,6 +13,7 @@ const Products = ({ columns, product }) => {
           src={product.image}
           alt={product.title}
           className="h-full w-full"
+          loading="lazy"
         />
       </figure>
       <div className="min-h-52 flex flex-col justify-between">
@@ -20,17 +25,28 @@ const Products = ({ columns, product }) => {
           </div>
           <div className="flex justify-center gap-3 w-full">
             <Link
-              to={`/shopping/product/${product._id}`}
+              to={`/product/${product._id}`}
               className="bg-third py-1 px-3 md:w-24 text-center text-primary rounded-md text-xl cursor-pointer hover:bg-fourth"
             >
               {see}
             </Link>
-            <button
-              type="button"
-              className="bg-green py-1 px-3 md:w-24 text-center text-primary rounded-md text-xl cursor-pointer hover:bg-darkRed"
-            >
-              {shopping}
-            </button>
+            {isProduct ? (
+              <button
+                className="bg-darkRed py-1 px-3 md:w-24 text-center text-primary rounded-md text-xl cursor-pointer hover:bg-fourth"
+                type="button"
+                onClick={() => deleteItem(product._id)}
+              >
+                {trashCan}
+              </button>
+            ) : (
+              <button
+                className="bg-green py-1 px-3 md:w-24 text-center text-primary rounded-md text-xl cursor-pointer hover:bg-yellow"
+                type="button"
+                onClick={() => addToCart(product)}
+              >
+                {shopping}
+              </button>
+            )}
           </div>
         </div>
       </div>
