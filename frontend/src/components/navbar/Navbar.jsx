@@ -22,8 +22,8 @@ const Navbar = () => {
           </Link>
         </h1>
         <div className="flex items-center gap-10">
-          <Menu toggleMenu={toggleMenu} handleToggleMenu={handleToggleMenu} />
-          <Cart toggleCart={toggleCart} handleToggleCart={handleToggleCart} />
+          <Menu />
+          <Cart />
           <div className="flex gap-5">
             <button
               type="button"
