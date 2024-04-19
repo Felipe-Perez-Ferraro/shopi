@@ -14,11 +14,13 @@ import {
   faChevronRight,
   faChevronDown,
   faChevronUp,
+  faTrash,
+  faTrashCan,
 } from '@fortawesome/free-solid-svg-icons';
 
 export const menu = <FontAwesomeIcon icon={faBars} />;
 export const xMark = <FontAwesomeIcon icon={faXmark} />;
-export const cart = <FontAwesomeIcon icon={faCartShopping} />;
+export const cartIcon = <FontAwesomeIcon icon={faCartShopping} />;
 export const star = <FontAwesomeIcon icon={faStar} />;
 export const see = <FontAwesomeIcon icon={faEye} />;
 export const shopping = <FontAwesomeIcon icon={faBasketShopping} />;
@@ -30,3 +32,5 @@ export const square = <FontAwesomeIcon icon={faSquare} />;
 export const chevronRight = <FontAwesomeIcon icon={faChevronRight} />;
 export const chevronDown = <FontAwesomeIcon icon={faChevronDown} />;
 export const chevronUp = <FontAwesomeIcon icon={faChevronUp} />;
+export const trash = <FontAwesomeIcon icon={faTrash} />;
+export const trashCan = <FontAwesomeIcon icon={faTrashCan} />;

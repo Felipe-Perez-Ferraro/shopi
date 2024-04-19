@@ -1,42 +1,29 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useCart } from '../../hooks/useCart';
 
-const HandleCart = () => {
-  const [qtyCount, setQtyCount] = useState(0);
-
-  const handleAddQty = () => {
-    setQtyCount((prev) => prev + 1);
-  };
-
-  const handleSubQty = () => {
-    setQtyCount((prev) => prev - 1);
-  };
+const HandleCart = ({ product }) => {
+  const { cart, deleteItem, addToCart } = useCart();
+  const isProduct = cart.some((item) => item._id === product._id);
 
   return (
     <div className="flex justify-center gap-2 mt-4">
-      <button
-        type="button"
-        className="bg-fourth border border-black px-3 py-1 text-primary font-semibold hover:bg-darkRed"
-      >
-        Add to cart
-      </button>
-      <div className="flex gap-2 items-center">
+      {isProduct ? (
         <button
+          className="bg-darkRed py-1 px-3 text-center text-primary rounded-md text-xl cursor-pointer hover:bg-fourth"
           type="button"
-          onClick={handleAddQty}
-          className="bg-second px-2 py-1 border border-black font-medium hover:bg-darkGray"
+          onClick={() => deleteItem(product._id)}
         >
-          +
+          Remove from cart
         </button>
-        <p>{qtyCount}</p>
+      ) : (
         <button
+          className="bg-green py-1 px-3 text-center text-primary rounded-md text-xl cursor-pointer hover:bg-yellow"
           type="button"
-          onClick={handleSubQty}
-          disabled={qtyCount === 0}
-          className="bg-second px-2 py-1 border border-black font-medium hover:bg-darkGray"
+          onClick={() => addToCart(product)}
         >
-          -
+          Add to cart
         </button>
-      </div>
+      )}
     </div>
   );
 };
