@@ -1,9 +1,11 @@
 import React from 'react';
 import { useCart } from '../../hooks/useCart';
 import Swal from 'sweetalert2';
+import { useMenu } from '../../hooks/useMenu';
 
-const CartFeatures = ({ handleToggleCart }) => {
+const CartFeatures = () => {
   const { cart, totalCart, clearCart } = useCart();
+  const { handleToggleCart } = useMenu();
 
   const handleBuyItem = () => {
     Swal.fire({
