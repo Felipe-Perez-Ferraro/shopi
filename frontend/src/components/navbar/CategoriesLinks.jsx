@@ -2,10 +2,12 @@ import React, { useState } from 'react';
 import { useProducts } from '../../hooks/useProducts';
 import { chevronUp, chevronDown } from '../../utils/icons';
 import { NavLink } from 'react-router-dom';
+import { useMenu } from '../../hooks/useMenu';
 
-const CategoriesLinks = ({ handleToggleMenu }) => {
+const CategoriesLinks = () => {
   const [showCategories, setShowCategories] = useState(false);
   const { uniqueCategories } = useProducts();
+  const { handleToggleMenu } = useMenu();
 
   const handleShowCategories = () => {
     setShowCategories(!showCategories);
