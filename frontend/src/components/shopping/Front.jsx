@@ -1,21 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useProducts } from '../../hooks/useProducts';
-import { square } from '../../utils/icons';
 import Products from './Products';
 import Footer from '../home/Footer';
 import Loading from '../slider/Loading';
 import Filters from './Filters';
 import { useFilters } from '../../hooks/useFilters';
+import ManageColumns from './ManageColumns';
+import { useColumns } from '../../hooks/useColumns';
 
 const Front = () => {
   const { products } = useProducts();
-  const [columns, setColumns] = useState(false);
   const { filterProducts } = useFilters();
   const filteredProducts = filterProducts(products);
-
-  const handleColumns = () => {
-    setColumns(!columns);
-  };
+  const { columns, handleColumns } = useColumns()
 
   return (
     <>
@@ -26,24 +23,7 @@ const Front = () => {
           } mx-auto md:max-w-2xl xl:mx-0 gap-3 mb-6 lg:w-1/3`}
         >
           <Filters />
-          <div className="flex items-center gap-4 md:hidden">
-            <button
-              type="button"
-              disabled={columns}
-              onClick={handleColumns}
-              className={`text-2xl  ${columns ? 'text-yellow' : 'text-gray'}`}
-            >
-              {square}
-            </button>
-            <button
-              type="button"
-              disabled={!columns}
-              onClick={handleColumns}
-              className={`text-2xl  ${columns ? 'text-gray' : 'text-yellow'}`}
-            >
-              {square} {square}
-            </button>
-          </div>
+          <ManageColumns columns={columns} handleColumns={handleColumns} />
         </div>
         <div className="xl:w-full">
           <h2
