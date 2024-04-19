@@ -1,24 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useProducts } from '../../hooks/useProducts';
-import { Link, useParams } from 'react-router-dom';
-import { see, shopping, square, trashCan } from '../../utils/icons';
+import { useParams } from 'react-router-dom';
 import Footer from '../home/Footer';
 import Loading from '../slider/Loading';
 import Filters from './Filters';
 import { useFilters } from '../../hooks/useFilters';
 import { useCart } from '../../hooks/useCart';
+import ManageColumns from './ManageColumns';
+import { useColumns } from '../../hooks/useColumns';
+import CategoriesProducts from './CategoriesProducts';
 
 const Categories = () => {
   const { products } = useProducts();
   const { category } = useParams();
-  const [columns, setColumns] = useState(false);
   const { filterProducts } = useFilters();
   const filteredProducts = filterProducts(products);
-  const { addToCart, cart, deleteItem } = useCart();
-
-  const handleColumns = () => {
-    setColumns(!columns);
-  };
+  const { cart } = useCart();
+  const { columns, handleColumns } = useColumns();
 
   const interestCategories = filteredProducts?.filter(
     (prod) => prod.category === category
@@ -39,28 +37,7 @@ const Categories = () => {
           } mx-auto md:max-w-2xl lg:mx-0 xl:mx-0 gap-3 mb-6 lg:w-1/3`}
         >
           <Filters />
-          <div className="flex items-center gap-4">
-            <button
-              type="button"
-              disabled={columns}
-              onClick={handleColumns}
-              className={`text-2xl  ${
-                columns ? 'text-yellow' : 'text-gray'
-              } md:hidden`}
-            >
-              {square}
-            </button>
-            <button
-              type="button"
-              disabled={!columns}
-              onClick={handleColumns}
-              className={`text-2xl  ${
-                columns ? 'text-gray' : 'text-yellow'
-              } md:hidden`}
-            >
-              {square} {square}
-            </button>
-          </div>
+          <ManageColumns columns={columns} handleColumns={handleColumns} />
         </div>
         <div className="xl:w-full">
           <h2
@@ -84,57 +61,7 @@ const Categories = () => {
               interestCategories.map((product) => {
                 const isProduct = cart.some((item) => item._id === product._id);
                 return (
-                  <div
-                    key={product._id}
-                    className="border border-black p-1 bg-second"
-                  >
-                    <figure className={`w-full ${columns ? 'h-60' : 'h-36'}`}>
-                      <img
-                        src={product.image}
-                        alt={product.title}
-                        className="h-full w-full"
-                        loading="lazy"
-                      />
-                    </figure>
-                    <div className="min-h-52 flex flex-col justify-between">
-                      <h4 className="text-sm text-start pt-2">
-                        {product.title}
-                      </h4>
-                      <div className="flex flex-col gap-2">
-                        <div className="flex justify-between items-center">
-                          <p className="text-lg font-semibold text-start">
-                            ${product.price}
-                          </p>
-                          <p className="text-sm">qty: {product.quantity}</p>
-                        </div>
-                        <div className="flex justify-center gap-3 w-full">
-                          <Link
-                            to={`/product/${product._id}`}
-                            className="bg-third py-1 px-3 md:w-24 text-center text-primary rounded-md text-xl cursor-pointer hover:bg-fourth"
-                          >
-                            {see}
-                          </Link>
-                          {isProduct ? (
-                            <button
-                              className="bg-darkRed py-1 px-3 md:w-24 text-center text-primary rounded-md text-xl cursor-pointer hover:bg-fourth"
-                              type="button"
-                              onClick={() => deleteItem(product._id)}
-                            >
-                              {trashCan}
-                            </button>
-                          ) : (
-                            <button
-                              className="bg-green py-1 px-3 md:w-24 text-center text-primary rounded-md text-xl cursor-pointer hover:bg-yellow"
-                              type="button"
-                              onClick={() => addToCart(product)}
-                            >
-                              {shopping}
-                            </button>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                  <CategoriesProducts product={product} isProduct={isProduct} columns={columns} />
                 );
               })}
           </article>

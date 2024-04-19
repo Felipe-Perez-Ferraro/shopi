@@ -1,11 +1,14 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import { NavbarContext } from '../context/navbar';
 
 export function useMenu() {
-  const [toggleMenu, setToggleMenu] = useState(false);
-  const [toggleCart, setToggleCart] = useState(false);
+  const { toggleMenu, toggleCart, setToggleMenu, setToggleCart } =
+    useContext(NavbarContext);
+
   const handleToggleMenu = () => {
     setToggleMenu(!toggleMenu);
   };
+
   const handleToggleCart = () => {
     setToggleCart(!toggleCart);
   };

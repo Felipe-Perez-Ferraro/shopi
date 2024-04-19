@@ -3,8 +3,10 @@ import { xMark } from '../../utils/icons';
 import { NavLink } from 'react-router-dom';
 import CategoriesLinks from './CategoriesLinks';
 import { useFilters } from '../../hooks/useFilters';
+import { useMenu } from '../../hooks/useMenu';
 
-const Menu = ({ toggleMenu, handleToggleMenu }) => {
+const Menu = () => {
+  const { toggleMenu, handleToggleMenu } = useMenu()
   const { clearFilters } = useFilters();
   return (
     <ul
@@ -33,7 +35,7 @@ const Menu = ({ toggleMenu, handleToggleMenu }) => {
           Home
         </NavLink>
       </li>
-      <CategoriesLinks handleToggleMenu={handleToggleMenu} />
+      <CategoriesLinks />
     </ul>
   );
 };

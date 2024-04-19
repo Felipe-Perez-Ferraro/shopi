@@ -3,9 +3,11 @@ import { xMark } from '../../utils/icons';
 import { useCart } from '../../hooks/useCart';
 import CartItems from './CartItems';
 import CartFeatures from './CartFeatures';
+import { useMenu } from '../../hooks/useMenu';
 
-const Cart = ({ toggleCart, handleToggleCart }) => {
+const Cart = () => {
   const { cart } = useCart();
+  const { toggleCart, handleToggleCart } = useMenu();
 
   useEffect(() => {
     const handleScroll = (e) => {
@@ -51,7 +53,7 @@ const Cart = ({ toggleCart, handleToggleCart }) => {
               </li>
             ))}
         </div>
-        <CartFeatures handleToggleCart={handleToggleCart} />
+        <CartFeatures />
       </ul>
     </>
   );
